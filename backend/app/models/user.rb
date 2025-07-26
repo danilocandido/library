@@ -3,4 +3,6 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable, :validatable,
          :jwt_authenticatable, jwt_revocation_strategy: self
+
+  enum :role, { member: 0, librarian: 1 }
 end

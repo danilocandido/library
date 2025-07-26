@@ -36,9 +36,13 @@ gem "thruster", require: false
 gem "rack-cors"
 gem "pg"
 
+# Authentication
 gem 'devise'
 gem 'devise-jwt'
 gem 'jsonapi-serializer'
+
+# Authorization
+gem 'cancancan'
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
