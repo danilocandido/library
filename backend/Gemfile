@@ -44,7 +44,13 @@ gem 'jsonapi-serializer'
 # Authorization
 gem 'cancancan'
 
+group :test do
+  gem 'rspec-rails', '~> 8.0.0'
+end
+
 group :development, :test do
+  gem 'byebug', '~> 9.0', '>= 9.0.6'
+
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
   gem "brakeman", require: false
   gem "rubocop-rails-omakase", require: false
