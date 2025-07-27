@@ -8,5 +8,8 @@ class Ability
 
     can :search, Book
     can :manage, Book if user.librarian?
+
+    can :return, Borrowing if user.librarian?
+    can :create, Borrowing if user.member?
   end
 end

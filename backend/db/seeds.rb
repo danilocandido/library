@@ -4,3 +4,11 @@
 
 # Users
 User.create_with(password: '1234asdf').find_or_create_by(email: 'gandalf@mail.com')
+
+Book.find_or_create_by(
+  title: 'Silmarilion',
+  author: 'Token',
+  genre: 'fantasy',
+  isbn: '12345ASDFG',
+  total_copies: 100
+)

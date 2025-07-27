@@ -1,6 +1,6 @@
 RSpec.shared_context "shared stuff" do
   let(:book) do
-    Book.new(
+    Book.create(
       title: 'Silmarilion',
       author: 'Token',
       genre: 'fantasy',
@@ -10,7 +10,7 @@ RSpec.shared_context "shared stuff" do
   end
 
   let(:book_hegel) do
-    Book.new(
+    Book.create(
       title: 'phenomenology of spirit',
       author: 'Hegel',
       genre: 'philosophy',
@@ -19,7 +19,18 @@ RSpec.shared_context "shared stuff" do
     )
   end
 
-  let(:user) do
+  let(:book_kant) do
+    Book.create(
+      title: 'Critique of Pure Reason',
+      author: 'Immanual Kant',
+      genre: 'philosophy',
+      isbn: '9988776655443',
+      total_copies: 25
+    )
+  end
+
+  let(:user) { librarian }
+  let(:librarian) do
     User.create_with(
       password: '1234asdf'
     ).find_or_create_by(
@@ -28,15 +39,12 @@ RSpec.shared_context "shared stuff" do
     )
   end
 
-  let(:json) { JSON.parse(response.body) }
-
-  before do
-    auth_headers(user)
-  end
-
-  # sign_in with Devise and JWT
-  def auth_headers(user)
-    sign_in(user)
-    { 'Authorization' => "Bearer #{user.jti}" }
+  let(:member) do
+    User.create_with(
+      password: '1234asdf'
+    ).find_or_create_by(
+      email: 'frodo@mail.com',
+      role: :member
+    )
   end
 end

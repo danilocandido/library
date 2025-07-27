@@ -1,5 +1,8 @@
 class Book < ApplicationRecord
-  validates :isbn, length: 10..13 
+  has_many :borrowings
+  has_many :borrowers, through: :borrowings
+
+  validates :isbn, uniqueness: true, length: 10..13
   validates :total_copies, numericality: { greater_than: 0 }
 
   def self.search(search_terms = '')

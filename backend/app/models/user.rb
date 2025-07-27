@@ -5,4 +5,7 @@ class User < ApplicationRecord
          :jwt_authenticatable, jwt_revocation_strategy: self
 
   enum :role, { member: 0, librarian: 1 }
+
+  has_many :borrowings
+  has_many :borrowers, through: :borrowings
 end

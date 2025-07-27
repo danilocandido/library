@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "/books", type: :request do
   include_context 'shared stuff'
+  include_context 'device login'
 
   let(:valid_attributes) {
     {
@@ -15,13 +16,15 @@ RSpec.describe "/books", type: :request do
 
   describe "GET /index" do
     before do
-      5.times { |i| book.dup.save! }
+      book.save!
+      book_hegel.save!
+      book_kant.save!
     end
 
     it "renders a successful response" do
       get books_url, as: :json
       expect(response).to be_successful
-      expect(json.size).to eq 5
+      expect(json.size).to eq 3
     end
   end
 
@@ -56,14 +59,14 @@ RSpec.describe "/books", type: :request do
   describe "POST /create" do
     context "with valid parameters" do
       it "renders a JSON response with the new book" do
-        post books_url, params: { book: valid_attributes }, as: :json
+        post books_url, params: { book: valid_attributes }
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
 
       it "creates a new Book and new Items" do
         expect {
-          post books_url, params: { book: valid_attributes }, as: :json
+          post books_url, params: { book: valid_attributes }
         }.to change { Book.count }.by(1)
       end
     end
