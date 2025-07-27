@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, path: '', path_names: {
+  # Authentication
+  devise_for :users, path: 'api', path_names: {
     sign_in: 'login',
     sign_out: 'logout',
     registration: 'signup'
@@ -9,7 +10,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  get '/current_user', to: 'current_user#index'
+  get 'api/current_user', to: 'current_user#index'
+  
+  scope :api do
+    resources :books
+  end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
