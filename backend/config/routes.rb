@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   get 'api/current_user', to: 'current_user#index'
   
   scope :api do
-    resources :books
+    resources :books do
+      get :search, on: :collection
+    end
   end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

@@ -34,6 +34,10 @@ class BooksController < ApplicationController
     @book.destroy!
   end
 
+  def search
+    render json: Book.search(params[:q])
+  end
+
   private
 
   def set_book
