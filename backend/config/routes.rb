@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   get 'api/current_user', to: 'current_user#index'
   
   scope :api do
+    get 'dashboard', to: 'dashboards#index'
+
     resources :books do
       get :search, on: :collection
     end

@@ -13,6 +13,9 @@ class Borrowing < ApplicationRecord
   validate :user_cannot_borrow_same_book_twice, on: :create
   validate :book_must_have_available_copies, on: :create
 
+  scope :active, -> { where(returned_at: nil) }
+  scope :due_today, -> { where(due_at: Time.current.beginning_of_day..Time.current.end_of_day) }
+
   def return!
     update!(returned_at: Time.current)
   end
