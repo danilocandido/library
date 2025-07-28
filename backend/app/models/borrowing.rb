@@ -38,6 +38,8 @@ class Borrowing < ApplicationRecord
   end
 
   def book_must_have_available_copies
-    errors.add(:base, 'Book is not available') if book.total_copies.zero?
+    return if book.borrowings.active.count < book.total_copies
+
+    errors.add(:base, 'Book is not available') 
   end
 end
