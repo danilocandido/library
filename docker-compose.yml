@@ -26,14 +26,7 @@ services:
       DATABASE_PASSWORD: password
       DATABASE_NAME: myapp_development
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    environment:
-      NODE_ENV: development
-    ports:
-      - 8080:8080
+
 
 volumes:
   db_data:

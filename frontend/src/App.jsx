@@ -64,9 +64,13 @@ function App() {
           <UserInfo email={user.email} role={user.role} />
           <button onClick={handleLogout} style={{ marginBottom: 20 }}>Logout</button>
           <button onClick={() => setShowSearch(true)} style={{ marginLeft: 10, marginBottom: 20 }}>Pesquisar</button>
-          {user.role === 'librarian' && !showBookForm && (
-            <button onClick={() => setShowBookForm(true)} style={{ marginBottom: 20, marginLeft: 10 }}>Adicionar Livro</button>
-          )}
+          <button
+            onClick={() => { setEditBook(null); setShowBookForm(true) }}
+            style={{ marginLeft: 10, marginBottom: 20 }}
+          >
+            Book Register
+          </button>
+    
           {showBookForm && (
             <BookForm token={token} onSave={() => setShowBookForm(false)} book={editBook} onCancel={() => { setShowBookForm(false); setEditBook(null) }} />
           )}
