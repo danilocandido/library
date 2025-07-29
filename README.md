@@ -7,6 +7,7 @@ This project is divided into two folders:
 
 ## Requirements
 - Docker and Docker Compose installed
+- Ensure these two ports are available 3000 and 8080 
 
 ## Authentication & Authorization
 

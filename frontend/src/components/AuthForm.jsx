@@ -31,7 +31,6 @@ export default function AuthForm({ onAuth }) {
         id: data.data.id
       } : { email: '', role: '', id: null }
       onAuth(token, userInfo)
-      localStorage.setItem('token', token)
       localStorage.setItem('userInfo', JSON.stringify(userInfo))
     } catch {
       setError('Invalid credentials')
