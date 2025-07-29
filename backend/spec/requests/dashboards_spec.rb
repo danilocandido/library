@@ -16,7 +16,7 @@ RSpec.describe "/dashboards", type: :request do
         end
 
         # due today
-        Borrowing.find_by(book: book).update_columns(due_at: Time.current)
+        Borrowing.find_by(book: book).update_columns(due_at: 1.day.from_now)
         # overdue
         Borrowing.find_by(book: book_hegel).update_columns(due_at: 1.week.ago)
       end

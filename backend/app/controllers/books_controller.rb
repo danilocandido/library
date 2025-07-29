@@ -23,6 +23,7 @@ class BooksController < ApplicationController
   end
 
   def update
+    byebug
     if @book.update(book_params)
       render json: @book
     else

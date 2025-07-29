@@ -52,3 +52,40 @@ docker-compose run api bundle exec rspec
 ## Postman Collection
 
 A Postman collection is available for testing the API. You can import the file `Library.postman_collection.json` into Postman to try out all endpoints easily.
+
+
+### 🔐 **Authentication and Authorization**
+
+* As a user, I want to **sign up, log in, and log out**
+* As a **librarian**, I want to be able to **add, edit. Deletion is available only in API**.
+* As a **member**, I should only be able to **view and borrow books**, not edit anything.
+
+---
+
+### 📚 **Book Management**
+
+* As a librarian, I want to **add a new book** with details like title, author, genre, ISBN, and number of copies.
+* As a librarian, I want to **edit existing book details**.
+* As a librarian, I want to **delete books from the system**.
+* As any user, I want to **search for books by title, author, or genre** so I can find what I need easily.
+
+---
+
+### 🔄 **Borrowing and Returning**
+
+* As a member, I want to **borrow a book** if it's available.
+* As a member, I should **not be able to borrow the same book more than once at the same time**.
+* As the system, I want to **track when a book was borrowed** and **set the due date to 2 weeks later**.
+* As a librarian, I want to **mark a book as returned** when the member gives it back.
+
+---
+
+### 📊 **Dashboard**
+
+* As a librarian, I want a **dashboard that shows total books, total borrowed books, books due today**, and a **list of members with overdue books**.
+* As a member, I want a **dashboard that shows the books I've borrowed**, their **due dates**, and **which ones are overdue**.
+
+---
+
+Let me know if you want this in a more structured format (like Agile "Given–When–Then") or turned into GitHub issues!
+

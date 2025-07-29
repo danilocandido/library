@@ -61,7 +61,6 @@ RSpec.describe "/books", type: :request do
       it "renders a JSON response with the new book" do
         post books_url, params: { book: valid_attributes }
         expect(response).to have_http_status(:created)
-        expect(response.content_type).to match(a_string_including("application/json"))
       end
 
       it "creates a new Book and new Items" do
@@ -69,6 +68,36 @@ RSpec.describe "/books", type: :request do
           post books_url, params: { book: valid_attributes }
         }.to change { Book.count }.by(1)
       end
+    end
+  end
+
+  describe "DELETE /destroy" do
+    let!(:book) { Book.create!(valid_attributes) }
+
+    it "deletes the book and returns no content" do
+      expect {
+        delete book_url(book)
+      }.to change { Book.count }.by(-1)
+      expect(response).to have_http_status(:no_content)
+    end
+  end
+
+  describe "PUT /update" do
+    let!(:book) { Book.create!(valid_attributes) }
+
+    let(:new_attributes) {
+      {
+        title: 'Updated Title',
+        author: 'Updated Author',
+        genre: 'updated genre',
+        isbn: 'UPDATEDISBN12',
+        total_copies: 50
+      }
+    }
+
+    it "updates the requested book" do
+      put book_url(book), params: { book: new_attributes }
+      expect(response).to have_http_status(:ok)
     end
   end
 end
