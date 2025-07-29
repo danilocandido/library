@@ -15,8 +15,15 @@ This project is divided into two folders:
 - Authorization is managed with the [cancancan](https://github.com/CanCanCommunity/cancancan)
   gem.
 
-## How to run
+## Preparing data
+```bash
+docker-compose run api rails db:create
+docker-compose run api rails db:migrate
+docker-compose run api rails db:seed
 
+```
+
+## How to run
 ```bash
 docker-compose build && docker-compose up
 ```
@@ -40,3 +47,7 @@ docker-compose run api bundle exec rspec
 ## Example users
 - Member: gandalf@mail.com / 1234asdf
 - Librarian: admin@mail.com / 1234asdf
+
+## Postman Collection
+
+A Postman collection is available for testing the API. You can import the file `Library.postman_collection.json` into Postman to try out all endpoints easily.
