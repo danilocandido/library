@@ -74,7 +74,7 @@ RSpec.describe Borrowing, type: :model do
     end
 
     it { expect(book.total_copies).to eq 1 }
-    it { expect(book.borrowings.active.size).to eq 1 }
+    it { expect(book.borrowings.size).to eq 1 }
     it { expect(unavailable.errors.details).to include(base: [{error: 'Book is not available'}]) }
   end
 end

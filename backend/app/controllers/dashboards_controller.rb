@@ -3,8 +3,8 @@ class DashboardsController < ApplicationController
 
   def index
     @total_books = Book.accessible_by(current_ability).count
-    @total_borrowed_books =  Borrowing.accessible_by(current_ability).active.count
-    @books_due_today = Borrowing.accessible_by(current_ability).due_today
+    @total_borrowed_books = Borrowing.accessible_by(current_ability).count
+    @books_due_today = Borrowing.accessible_by(current_ability).includes(:book).due_today
     @overdue_members = User.accessible_by(current_ability).overdue_members
 
     render :index

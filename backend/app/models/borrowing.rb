@@ -1,4 +1,6 @@
 class Borrowing < ApplicationRecord
+  default_scope { active }
+
   belongs_to :user
   belongs_to :book
 
@@ -14,7 +16,9 @@ class Borrowing < ApplicationRecord
   validate :book_must_have_available_copies, on: :create
 
   scope :active, -> { where(returned_at: nil) }
-  scope :due_today, -> { where(due_at: Time.current.beginning_of_day..Time.current.end_of_day) }
+  scope :due_today, -> do
+    where('due_at < ?', Time.current.end_of_day)
+  end
 
   def return!
     update!(returned_at: Time.current)
@@ -38,7 +42,7 @@ class Borrowing < ApplicationRecord
   end
 
   def book_must_have_available_copies
-    return if book.borrowings.active.count < book.total_copies
+    return if book.borrowings.count < book.total_copies
 
     errors.add(:base, 'Book is not available') 
   end

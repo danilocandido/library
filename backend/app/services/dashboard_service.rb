@@ -25,7 +25,7 @@ class DashboardService
   def member_dashboard
     borrowings = @user.borrowings
     {
-      borrowed_books: borrowings.active.as_json,
+      borrowed_books: borrowings.as_json,
       overdue_books: borrowings.overdue.as_json
     }
   end

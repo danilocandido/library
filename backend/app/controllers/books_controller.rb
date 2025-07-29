@@ -5,7 +5,7 @@ class BooksController < ApplicationController
   def index
     @books = Book.accessible_by(current_ability)
 
-    render json: @books
+    render :index
   end
 
   def show
